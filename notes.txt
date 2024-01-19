@@ -1,0 +1,15 @@
+Our AutoML model consists of four main components.
+
+the first component is the augmentation bloc, 
+this takes in the synthetic data as input and attempts to augment it, using the provided parameters, to look more realistic.
+
+The second component is the UNet model which is trained on this augmented data.
+
+The 3rd component completes the feedforward portion of the pipeline, and is the validation block.
+This block validates the trained UNet against our real world data and outputs an error score.
+
+And finally we have our feedback coponents, which takes the feedforward's output error, and uses it
+to find the enxt set of optimized hyperparams to be fedback to our augmentation block for the next iteration.
+
+This final component was implemented 2 different ways. 
+The first method used an open source AutoML tool, called SMAC3, to carry out Bayesian optimization.
